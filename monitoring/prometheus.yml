@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'devops-lab-app'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['devops-lab-tf:3000']
+        labels:
+          app: 'devops-lab'
+          env: 'lab'
